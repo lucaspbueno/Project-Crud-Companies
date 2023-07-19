@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import alertSvg from '../pictures/alert.svg';
 import { loginDone } from "../redux/actions/actionsLogin";
+import '../Css/Login.css'
 
 
 export default function Login() {
@@ -15,6 +16,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
+  const { theme } = useSelector((state) => state.page);
 
   const fetchApi = async () => {
     try {
@@ -63,8 +65,12 @@ export default function Login() {
 
   /* is-invalid */
   return (
-    <div className="vh-100 d-flex flex-column justify-content-center align-items-center">
-      <form action="" method="post" className="d-flex flex-column justify-content-center border p-5 border-primary rounded-4">
+    <div className={ theme === 'dark' ? 'vh-100 d-flex flex-column justify-content-center align-items-center theme-dark' : 'vh-100 d-flex flex-column justify-content-center align-items-center bg-white' }>
+      <form action="" method="post"
+        className={
+          theme === 'dark' ?
+          'd-flex flex-column justify-content-center border p-5 border-primary rounded-4 text-white' :
+          'd-flex flex-column justify-content-center border p-5 border-primary rounded-4 text-white theme-light'}>
         <label>
           Email:
           <input

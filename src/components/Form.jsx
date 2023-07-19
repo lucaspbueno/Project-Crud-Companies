@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../Css/Form.css'
 import { registerSuccessful, toggleTypeForm, editSuccessful, updateIdToEdit } from '../redux/actions/actionsForm';
 import { useHistory } from 'react-router-dom';
+
 export default function Form() {
   const [form, setForm] = useState({
     razao_social: '',
@@ -21,10 +22,11 @@ export default function Form() {
   });
   const dispatch = useDispatch();
   const history = useHistory();
-  const { companies, idToEdit, type } = useSelector((state) => ({
+  const { companies, idToEdit, type, theme } = useSelector((state) => ({
     companies: state.form.companies,
     idToEdit: state.form.idToEdit,
     type: state.form.type,
+    theme: state.page.theme
   }));
 
   const {
@@ -72,6 +74,7 @@ export default function Form() {
       cidade: '',
       estado: ''
     });
+    history.push("/table");
   };
 
     const handleClickEdit = () => {
@@ -97,7 +100,7 @@ export default function Form() {
         estado: '',
         plano_id: companies.length
       });
-      /* history.push("/table"); */
+      history.push("/table");
     };
 
     useEffect(() => {
@@ -119,16 +122,16 @@ export default function Form() {
 
 
   return (
-    <main className="d-flex flex-column">
+    <main className={ theme === 'dark' && 'text-white-50' }>
       <h1>Formulário de inscrição</h1>
-      <form action="" method="post" className="d-flex flex-column justify-content-center p-4">
-          <label>
+      <form action="" method="post" className={ theme === 'dark' ? 'd-flex flex-column p-4' : 'd-flex flex-column p-4 border rounded-2' }>
+          <label className="form-label">
             Razão social:
             <input
               type="text"
               name="razao_social"
-              className="form-control p-3"
-              placeholder="Razão social"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
+              placeholder="Corporate reason"
               value={ razao_social }
               onChange={ handleChange }
             />
@@ -139,8 +142,8 @@ export default function Form() {
             <input
               type="text"
               name="nome_fantasia"
-              className="form-control p-3"
-              placeholder="name@gmail.com"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
+              placeholder="Name"
               value={ nome_fantasia }
               onChange={ handleChange }
             />
@@ -151,8 +154,7 @@ export default function Form() {
             <input
               type="number"
               name="inscricao_municipal"
-              className="form-control p-3"
-              placeholder='123'
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
               value={ inscricao_municipal }
               onChange={ handleChange }
             />
@@ -163,8 +165,7 @@ export default function Form() {
             <input
               type="number"
               name="inscricao_estadual"
-              className="form-control p-3"
-              placeholder="name@gmail.com"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
               value={ inscricao_estadual }
               onChange={ handleChange }
             />
@@ -175,8 +176,7 @@ export default function Form() {
             <input
               type="number"
               name="cnpj"
-              className="form-control p-3"
-              placeholder="name@gmail.com"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
               value={ cnpj }
               onChange={ handleChange }
             />
@@ -187,8 +187,7 @@ export default function Form() {
             <input
               type="number"
               name="cep"
-              className="form-control p-3"
-              placeholder="name@gmail.com"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
               value={ cep }
               onChange={ handleChange }
             />
@@ -199,8 +198,8 @@ export default function Form() {
             <input
               type="text"
               name="endereco"
-              className="form-control p-3"
-              placeholder="name@gmail.com"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
+              placeholder="Rua Eurita"
               value={ endereco }
               onChange={ handleChange }
             />
@@ -211,8 +210,7 @@ export default function Form() {
             <input
               type="number"
               name="numero"
-              className="form-control p-3"
-              placeholder="name@gmail.com"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
               value={ numero }
               onChange={ handleChange }
             />
@@ -223,8 +221,8 @@ export default function Form() {
             <input
               type="text"
               name="complemento"
-              className="form-control p-3"
-              placeholder="name@gmail.com"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
+              placeholder="------"
               value={ complemento }
               onChange={ handleChange }
             />
@@ -235,8 +233,8 @@ export default function Form() {
             <input
               type="text"
               name="bairro"
-              className="form-control p-3"
-              placeholder="name@gmail.com"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
+              placeholder="Santa Tereza"
               value={ bairro }
               onChange={ handleChange }
             />
@@ -247,8 +245,8 @@ export default function Form() {
             <input
               type="text"
               name="cidade"
-              className="form-control p-3"
-              placeholder="name@gmail.com"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
+              placeholder="Belo Horizonte"
               value={ cidade }
               onChange={ handleChange }
             />
@@ -259,7 +257,7 @@ export default function Form() {
             <input
               type="text"
               name="estado"
-              className="form-control p-3"
+              className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
               placeholder="name@gmail.com"
               value={ estado }
               onChange={ handleChange }

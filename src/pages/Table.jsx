@@ -7,9 +7,10 @@ import pencilSvg from '../pictures/pencil.svg';
 import { removeCompany, toggleTypeForm, updateIdToEdit } from '../redux/actions/actionsForm';
 
 export default function Table() {
-  const { companies, token } = useSelector((state) => ({
+  const { companies, token, theme } = useSelector((state) => ({
     companies: state.form.companies,
     token: state.login.token,
+    theme: state.page.theme
   }));
   const dispatch = useDispatch();
   const history = useHistory();
@@ -78,8 +79,8 @@ export default function Table() {
   };
 
   return (
-    <div className="content">
-      <table className="table table-striped table-hover table-bordered">
+    <div className="content z-2 vh-100">
+      <table className={ theme === 'dark' ? 'table table-dark table-striped table-hover table-bordered' : 'table table-striped table-hover table-bordered' }>
         <thead className='table-dark'>
           <tr>
             <th scope="col">Id</th>

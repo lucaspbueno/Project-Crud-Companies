@@ -1,5 +1,11 @@
 nav {
-  margin-top: 74px;
+  margin-top: 75px;
+}
+
+div.content-nav {
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
 }
 
 a:hover {

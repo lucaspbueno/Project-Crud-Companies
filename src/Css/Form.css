@@ -1,14 +1,8 @@
 main {
-  width: 100%;
-  margin-top: 75px;
-  margin-bottom: 50px;
+  margin: 50px;
+  padding-bottom: 20px !important;
   color: rgb(0, 0, 0);
   font-size: 22px;
-}
-
-form {
-  margin: 20px 50px;
-  border: 2px solid black;
 }
 
 label {
@@ -16,6 +10,10 @@ label {
   padding: 10px !important;
 }
 
-input {
-  margin-top: 3px;
+input.custom-placeholder::placeholder {
+  color: lightgray;
+}
+
+a.nav-link.active {
+  color: black !important;
 }
