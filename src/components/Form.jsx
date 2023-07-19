@@ -51,14 +51,14 @@ export default function Form() {
   };
 
   const handleClick = () => {
-    const updatedForm = {
+    const updateForm = {
       ...form,
-      plano_id: form.plano_id + 1
-    };
-    dispatch(registerSuccessful(updatedForm));
+      plano_id: form.plano_id += 1
+    }
+    dispatch(registerSuccessful(form));
     // Limpar os campos do formulário, exceto o campo plano_id
     setForm({
-      ...updatedForm,
+      ...updateForm,
       razao_social: '',
       nome_fantasia: '',
       inscricao_municipal: 0,
@@ -70,21 +70,19 @@ export default function Form() {
       complemento: '',
       bairro: '',
       cidade: '',
-      estado: '',
+      estado: ''
     });
   };
 
     const handleClickEdit = () => {
-      const updatedForm = {
+      dispatch(editSuccessful({
         ...form,
-        plano_id: form.plano_id + 1
-      };
-      dispatch(editSuccessful(form));
+        plano_id: idToEdit
+      }));
       dispatch(toggleTypeForm());
       dispatch(updateIdToEdit(''));
       // Limpar os campos do formulário, exceto o campo plano_id
       setForm({
-        ...updatedForm,
         razao_social: '',
         nome_fantasia: '',
         inscricao_municipal: 0,
@@ -97,18 +95,26 @@ export default function Form() {
         bairro: '',
         cidade: '',
         estado: '',
+        plano_id: companies.length
       });
       /* history.push("/table"); */
     };
 
     useEffect(() => {
+      if (plano_id === 0) {
+        setForm({
+          ...form,
+          plano_id: companies.length
+        });
+      };
       if (typeof idToEdit !== 'string') {
         console.log('TO AQUI');
+        console.log(companies.length);
         const company = companies.find(({plano_id}) => plano_id === idToEdit);
         setForm({
           ...company
         });
-      }
+      };
     }, []);
 
 

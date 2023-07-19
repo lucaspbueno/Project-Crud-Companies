@@ -1,11 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import '../Css/NavBar.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleTypeForm, updateIdToEdit } from '../redux/actions/actionsForm';
 
 export default function NavBar({ active }) {
+  const dispatch = useDispatch();
+  const { type } = useSelector((state) => state.form);
   const history = useHistory();
 
   const handleClick = (route) => {
+    if (route === 'table' && type === 'edit') {
+      dispatch(toggleTypeForm());
+      dispatch(updateIdToEdit(''));
+    }
     history.push(`/${route}`);
   };
 
