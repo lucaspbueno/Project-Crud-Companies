@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import '../Css/Table.css';
 import trashSvg from '../pictures/trash.svg';
 import pencilSvg from '../pictures/pencil.svg';
-import { toggleTypeForm, updateIdToEdit } from '../redux/actions/actionsForm';
+import { removeCompany, toggleTypeForm, updateIdToEdit } from '../redux/actions/actionsForm';
 
 export default function Table() {
   const { companies, token } = useSelector((state) => ({
@@ -62,12 +62,13 @@ export default function Table() {
       console.error('Erro na requisição:', error);
       // Aqui você pode tratar erros de rede ou outros erros que possam ocorrer durante a requisição.
     }
-  };
-
-
-  const deleteCompany = () => {
-    fetchApiDelete();
   }; */
+
+
+  const deleteCompany = (plano_id) => {
+    dispatch(removeCompany(plano_id));
+    /* fetchApiDelete(); */
+  };
 
   const editCompany = (plano_id) => {
     dispatch(toggleTypeForm());
@@ -129,9 +130,9 @@ export default function Table() {
                   <td>{ cidade }</td>
                   <td>{ estado }</td>
                   <td className="teste">
-                    {/* <button type="button" onClick={ () => deleteCompany(plano_id) }>
+                    <button type="button" onClick={ () => deleteCompany(plano_id) }>
                       <img src={ trashSvg } alt="Ícone de uma lixeira" />
-                    </button> */}
+                    </button>
 
                     <button type="button" onClick={ () => editCompany(plano_id) }>
                       <img src={ pencilSvg } alt="Ícone de um lápis" />

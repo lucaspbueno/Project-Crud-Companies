@@ -1,4 +1,4 @@
-import { DEFINE_FORM_TYPE, EDIT_COMPANY, REGISTER_COMPANY, UPDATE_ID_TO_EDIT } from "../actions/actionsForm";
+import { DEFINE_FORM_TYPE, EDIT_COMPANY, REGISTER_COMPANY, REMOVE_COMPANY, UPDATE_ID_TO_EDIT } from "../actions/actionsForm";
 
 const INITIAL_STATE = { 
   companies: [],
@@ -32,6 +32,19 @@ const formReducer = (state = INITIAL_STATE, action) => {
               ...action.company
             };
           }
+          acc.push(company);
+          return acc
+        }, [])
+      }
+    case REMOVE_COMPANY:
+      const companiesFiltered = state.companies.filter(({plano_id}) => plano_id !== action.idToRemove);
+      return {
+        ...state,
+        companies: companiesFiltered.reduce((acc, company, index) => {
+            company = {
+              ...company,
+              plano_id: index + 1
+            };
           acc.push(company);
           return acc
         }, [])
