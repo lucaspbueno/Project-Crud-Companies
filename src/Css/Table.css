@@ -1,0 +1,13 @@
+div.content {
+  margin: 25px;
+}
+
+td button {
+  background-color: transparent;
+  border: none;
+}
+
+td {
+  padding: 15px 10px!important;
+  text-align: center;
+}
