@@ -154,7 +154,7 @@ export default function Form() {
               type="text"
               name="razao_social"
               className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
-              placeholder="Corporate reason"
+              placeholder="Motivo da corporação"
               value={ razao_social }
               onChange={ handleChange }
             />
@@ -166,7 +166,7 @@ export default function Form() {
               type="text"
               name="nome_fantasia"
               className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
-              placeholder="Name"
+              placeholder="Nome da corporação"
               value={ nome_fantasia }
               onChange={ handleChange }
             />
@@ -281,7 +281,7 @@ export default function Form() {
               type="text"
               name="estado"
               className={ theme === 'dark' ? 'form-control p-3 bg-transparent border-secondary text-light custom-placeholder' : 'form-control p-3 bg-transparent' }
-              placeholder="name@gmail.com"
+              placeholder="Minas Gerais"
               value={ estado }
               onChange={ handleChange }
             />
