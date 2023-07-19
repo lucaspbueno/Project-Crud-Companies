@@ -8,6 +8,10 @@ div.content-nav {
   justify-content: space-between;
 }
 
+a.active-dark {
+  color: white !important;
+}
+
 a:hover {
   cursor: pointer;
 }

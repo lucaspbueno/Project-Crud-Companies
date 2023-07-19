@@ -24,7 +24,7 @@ export default function NavBar({ active }) {
   };
 
   return (
-    <nav className={ theme === 'dark' ? 'navbar navbar-expand-lg bg-secondary bg-gradient z-2' : 'navbar navbar-expand-lg bg-dark-subtle z-2' }>
+    <nav className={ theme === 'dark' ? 'navbar navbar-expand-lg bg-secondary bg-gradient z-2' : 'navbar navbar-expand-lg bg-dark-subtle z-2'}>
       <div className="container-fluid">
         <div className="collapse navbar-collapse content-nav" id="navbarNavAltMarkup">
           <div className="navbar-nav">
@@ -35,7 +35,7 @@ export default function NavBar({ active }) {
               Formulário
             </a>
             <a
-              className={ `nav-link ${ active === 'table' && 'active ' } ${ theme === 'dark' && 'text-white' }`}
+              className={ `nav-link ${ active === 'table' && 'active' } ${ theme === 'dark' && 'text-white' }`}
               onClick={ () => handleClick('table') }
             >
               Tabela

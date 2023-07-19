@@ -1,4 +1,4 @@
-import { DEFINE_FORM_TYPE, EDIT_COMPANY, REGISTER_COMPANY, REMOVE_COMPANY, UPDATE_ID_TO_EDIT } from "../actions/actionsForm";
+import { CLEAR_STATE_FORM, DEFINE_FORM_TYPE, EDIT_COMPANY, REGISTER_COMPANY, REMOVE_COMPANY, UPDATE_ID_TO_EDIT } from "../actions/actionsForm";
 
 const INITIAL_STATE = { 
   companies: [],
@@ -49,6 +49,8 @@ const formReducer = (state = INITIAL_STATE, action) => {
           return acc
         }, [])
       }
+    case CLEAR_STATE_FORM:
+      return INITIAL_STATE;
     default:
       return state;
   }

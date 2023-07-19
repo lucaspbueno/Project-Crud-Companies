@@ -32,7 +32,6 @@ export default function Login() {
         const responseData = await response.json();
         dispatch(loginDone(responseData.token_access));
         history.push("/form");
-        console.log('Resposta do servidor:', responseData);
       } else {
           setShowError(true);
           setError('Credenciais inválidas.');
@@ -95,7 +94,7 @@ export default function Login() {
           className="btn btn-outline-primary btn-lg mt-3"
           onClick={ handleClick }
         >
-          Middle
+          Login
         </button>
       </form>
       {

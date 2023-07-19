@@ -136,7 +136,6 @@ export default function Form() {
         });
       };
       if (typeof idToEdit !== 'string') {
-        console.log('TO AQUI');
         const company = companies.find(({plano_id}) => plano_id === idToEdit);
         setForm({
           ...company
