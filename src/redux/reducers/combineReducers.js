@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import loginReducer from './loginReducer';
 import formReducer from './formReducer';
-import themeReducer from './themeReducer';
+import pageReducer from './pageReducer';
 
 const rootReducer = combineReducers({ 
   login: loginReducer,
   form: formReducer,
-  page: themeReducer
+  page: pageReducer
 });
 
 export default rootReducer;

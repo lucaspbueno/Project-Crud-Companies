@@ -15,67 +15,35 @@ export default function Table() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  /* const fetchApiDelete = async (form) => { // Recebendo o objeto 'form' como parâmetro
+  const fetchApiDelete = async (form) => {
     try {
-      // Recupere o token do armazenamento local
-  
       const response = await fetch('https://api-homolog.simdescontonaluz.com.br/api/v1/empresa/deletar/1', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`, // Use o token recuperado no cabeçalho de autorização
-          'Content-Type': 'application/json',
-        },
-      });
-  
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log('Resposta do servidor:', responseData);
-        // Aqui você pode tratar a resposta do servidor, como fazer redirecionamento ou mostrar uma mensagem de sucesso.
-      } else {
-        console.log(response);
-        // Aqui você pode tratar o erro de acordo com o retorno do servidor.
-      }
-    } catch (error) {
-      console.error('Erro na requisição:', error);
-      // Aqui você pode tratar erros de rede ou outros erros que possam ocorrer durante a requisição.
-    }
-  }; */
-
-  /* const fetchApiEdit = async () => {
-    try {
-      const response = await fetch('https://api-homolog.simdescontonaluz.com.br/api/v1/empresa/salvar', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
-
       if (response.ok) {
         const responseData = await response.json();
         console.log('Resposta do servidor:', responseData);
-        // Aqui você pode tratar a resposta do servidor, como fazer redirecionamento ou mostrar uma mensagem de sucesso.
       } else {
         console.log(response);
-        // Aqui você pode tratar o erro de acordo com o retorno do servidor.
       }
     } catch (error) {
       console.error('Erro na requisição:', error);
-      // Aqui você pode tratar erros de rede ou outros erros que possam ocorrer durante a requisição.
     }
-  }; */
-
+  };
 
   const deleteCompany = (plano_id) => {
     dispatch(removeCompany(plano_id));
-    /* fetchApiDelete(); */
+    fetchApiDelete();
   };
 
   const editCompany = (plano_id) => {
     dispatch(toggleTypeForm());
     dispatch(updateIdToEdit(plano_id));
     history.push("/form");
-    /* fetchApiEdit(); */
   };
 
   return (

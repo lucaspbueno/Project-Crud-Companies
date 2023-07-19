@@ -5,7 +5,7 @@ import { toggleTypeForm, updateIdToEdit } from '../redux/actions/actionsForm';
 import '../Css/NavBar.css';
 import moonSvg from '../pictures/moon.svg';
 import sunSvg from '../pictures/sun.svg';
-import { toggleTheme } from '../redux/actions/actionsTheme';
+import { toggleTheme } from '../redux/actions/actionsPage';
 
 export default function NavBar({ active }) {
   const dispatch = useDispatch();

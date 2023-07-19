@@ -33,14 +33,12 @@ export default function Login() {
         dispatch(loginDone(responseData.token_access));
         history.push("/form");
         console.log('Resposta do servidor:', responseData);
-        // Aqui você pode tratar a resposta do servidor, como fazer redirecionamento ou mostrar uma mensagem de sucesso.
       } else {
           setShowError(true);
-        // Aqui você pode tratar o erro de acordo com o retorno do servidor.
+          setError('Credenciais inválidas.');
       }
     } catch (error) {
       console.error('Erro na requisição:', error);
-      // Aqui você pode tratar erros de rede ou outros erros que possam ocorrer durante a requisição.
     }
   };
 
@@ -63,7 +61,6 @@ export default function Login() {
     }
   };
 
-  /* is-invalid */
   return (
     <div className={ theme === 'dark' ? 'vh-100 d-flex flex-column justify-content-center align-items-center theme-dark' : 'vh-100 d-flex flex-column justify-content-center align-items-center bg-white' }>
       <form action="" method="post"

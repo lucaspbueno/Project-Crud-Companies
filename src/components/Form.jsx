@@ -22,9 +22,10 @@ export default function Form() {
   });
   const dispatch = useDispatch();
   const history = useHistory();
-  const { companies, idToEdit, type, theme } = useSelector((state) => ({
+  const { companies, idToEdit, token, type, theme } = useSelector((state) => ({
     companies: state.form.companies,
     idToEdit: state.form.idToEdit,
+    token: state.login.token,
     type: state.form.type,
     theme: state.page.theme
   }));
@@ -58,7 +59,6 @@ export default function Form() {
       plano_id: form.plano_id += 1
     }
     dispatch(registerSuccessful(form));
-    // Limpar os campos do formulário, exceto o campo plano_id
     setForm({
       ...updateForm,
       razao_social: '',
@@ -77,14 +77,39 @@ export default function Form() {
     history.push("/table");
   };
 
+  const fetchApiEdit = async () => {
+    try {
+      const response = await fetch('https://api-homolog.simdescontonaluz.com.br/api/v1/empresa/salvar', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...form,
+          plano_id: idToEdit 
+        }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Resposta do servidor: EDITAR', responseData);
+      } else {
+        console.log(response);
+      }
+    } catch (error) {
+      console.error('Erro na requisição:', error);
+    }
+  };
+
     const handleClickEdit = () => {
+      fetchApiEdit();
       dispatch(editSuccessful({
         ...form,
         plano_id: idToEdit
       }));
       dispatch(toggleTypeForm());
       dispatch(updateIdToEdit(''));
-      // Limpar os campos do formulário, exceto o campo plano_id
       setForm({
         razao_social: '',
         nome_fantasia: '',
@@ -112,7 +137,6 @@ export default function Form() {
       };
       if (typeof idToEdit !== 'string') {
         console.log('TO AQUI');
-        console.log(companies.length);
         const company = companies.find(({plano_id}) => plano_id === idToEdit);
         setForm({
           ...company
@@ -263,18 +287,6 @@ export default function Form() {
               onChange={ handleChange }
             />
           </label>
-
-        {/* <label>
-          Id:
-          <input
-            type="text"
-            name="plano_id"
-            className="form-control p-3"
-            placeholder="name@gmail.com"
-            value={ plano_id }
-            onChange={ handleChange }
-          />
-        </label> */}
 
         {
           type === 'add' ? (

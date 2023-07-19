@@ -3,3 +3,8 @@ header {
   color: white;
   background-color: rgb(0 20 47);
 }
+
+button {
+  border: none;
+  background-color: transparent;
+}
