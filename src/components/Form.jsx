@@ -50,19 +50,41 @@ export default function Form() {
     });
   };
 
-    const handleClick = () => {
-      setForm({
-        ...form,
-        plano_id: form.plano_id += 1
-      });
-      dispatch(registerSuccessful(form));
+  const handleClick = () => {
+    const updatedForm = {
+      ...form,
+      plano_id: form.plano_id + 1
     };
+    dispatch(registerSuccessful(updatedForm));
+    // Limpar os campos do formulário, exceto o campo plano_id
+    setForm({
+      ...updatedForm,
+      razao_social: '',
+      nome_fantasia: '',
+      inscricao_municipal: 0,
+      inscricao_estadual: 0,
+      cnpj: 0,
+      cep: 0,
+      endereco: '',
+      numero: 0,
+      complemento: '',
+      bairro: '',
+      cidade: '',
+      estado: '',
+    });
+  };
 
-    /* const handleClickEdit = () => {
-      console.log(form);
+    const handleClickEdit = () => {
+      const updatedForm = {
+        ...form,
+        plano_id: form.plano_id + 1
+      };
       dispatch(editSuccessful(form));
       dispatch(toggleTypeForm());
+      dispatch(updateIdToEdit(''));
+      // Limpar os campos do formulário, exceto o campo plano_id
       setForm({
+        ...updatedForm,
         razao_social: '',
         nome_fantasia: '',
         inscricao_municipal: 0,
@@ -75,22 +97,19 @@ export default function Form() {
         bairro: '',
         cidade: '',
         estado: '',
-        plano_id: form.plano_id
-      })
-      dispatch(updateIdToEdit(''));
-      history.push("/table");
-    }; */
+      });
+      /* history.push("/table"); */
+    };
 
-    /* useEffect(() => {
+    useEffect(() => {
       if (typeof idToEdit !== 'string') {
         console.log('TO AQUI');
         const company = companies.find(({plano_id}) => plano_id === idToEdit);
-        console.log(company);
         setForm({
           ...company
         });
       }
-    }, []); */
+    }, []);
 
 
   return (
@@ -266,7 +285,7 @@ export default function Form() {
             <button
               type="button"
               className="btn btn-outline-warning btn-lg mt-3"
-              /* onClick={ handleClickEdit } */
+              onClick={ handleClickEdit }
             >
               Edit
             </button>

@@ -38,9 +38,9 @@ export default function Table() {
       console.error('Erro na requisição:', error);
       // Aqui você pode tratar erros de rede ou outros erros que possam ocorrer durante a requisição.
     }
-  };
+  }; */
 
-  const fetchApiEdit = async () => {
+  /* const fetchApiEdit = async () => {
     try {
       const response = await fetch('https://api-homolog.simdescontonaluz.com.br/api/v1/empresa/salvar', {
         method: 'POST',
@@ -67,14 +67,14 @@ export default function Table() {
 
   const deleteCompany = () => {
     fetchApiDelete();
-  };
+  }; */
 
   const editCompany = (plano_id) => {
     dispatch(toggleTypeForm());
     dispatch(updateIdToEdit(plano_id));
     history.push("/form");
-    fetchApiEdit();
-  }; */
+    /* fetchApiEdit(); */
+  };
 
   return (
     <div className="content">
@@ -131,11 +131,11 @@ export default function Table() {
                   <td className="teste">
                     {/* <button type="button" onClick={ () => deleteCompany(plano_id) }>
                       <img src={ trashSvg } alt="Ícone de uma lixeira" />
-                    </button>
+                    </button> */}
 
                     <button type="button" onClick={ () => editCompany(plano_id) }>
                       <img src={ pencilSvg } alt="Ícone de um lápis" />
-                    </button> */}
+                    </button>
                   </td>
                 </tr>
               ))

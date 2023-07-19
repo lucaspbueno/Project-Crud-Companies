@@ -31,8 +31,8 @@ const formReducer = (state = INITIAL_STATE, action) => {
             company = {
               ...action.company
             };
-            acc.push(company);
           }
+          acc.push(company);
           return acc
         }, [])
       }
